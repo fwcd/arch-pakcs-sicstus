@@ -12,7 +12,7 @@ sha1sums=("39ef38b074de2e21f06e7801f724efbca1bfbf55" "799603efc36da20c31c08d1624
 
 _src_path="pakcs-${pkgver}"
 _install_path="opt/${pkgname}"
-_install_root="/${install_path}"
+_install_root="/${_install_path}"
 
 # Based on https://aur.archlinux.org/packages/pakcs/
 
@@ -66,7 +66,6 @@ package() {
 
   # Patch installation paths
   sed -i "s|${_src_root}|${_install_root}|g" "${_dist_root}/bin/pakcs"
-  sed -i "s|${_src_root}|${_install_root}|g" "${_dist_root}/currytools/optimize/.cpm/CURRYPATH_CACHE"
 
   # Link binaries to /usr/bin
   mkdir -p "${pkgdir}/usr/bin"
