@@ -28,7 +28,6 @@ prepare() {
 
 build() {
   _src_root="${srcdir}/${_src_path}"
-  _dist_root="${pkgdir}/${_install_path}"
 
   cd "${_src_root}"
   make SICSTUSPROLOG="$(readlink -f $(which sicstus))"
