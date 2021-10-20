@@ -18,7 +18,7 @@ prepare() {
 
 build() {
   cd "${srcdir}/pakcs-${pkgver}"
-  make SICSTUSPROLOG="/opt/bin/sicstus/bin/sicstus"
+  make SICSTUSPROLOG="$(readlink -f $(which sicstus))"
        DISTPKGINSTALL=yes \
        CURRYLIBSDIR="${PWD}/lib" \
        CURRYTOOLSDIR="${PWD}/currytools" \
