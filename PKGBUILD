@@ -18,7 +18,8 @@ prepare() {
 
 build() {
   cd "${srcdir}/pakcs-${pkgver}"
-  make DISTPKGINSTALL=yes \
+  make SICSTUSPROLOG="/opt/bin/sicstus/bin/sicstus"
+       DISTPKGINSTALL=yes \
        CURRYLIBSDIR="${PWD}/lib" \
        CURRYTOOLSDIR="${PWD}/currytools" \
        PAKCSINSTALLDIR="/opt/pakcs"
