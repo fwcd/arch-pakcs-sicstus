@@ -1,0 +1,35 @@
+diff --git a/scripts/configure-prolog.sh b/scripts/configure-prolog.sh
+index 9bc3686..4228351 100755
+--- a/scripts/configure-prolog.sh
++++ b/scripts/configure-prolog.sh
+@@ -13,14 +13,6 @@ elif [ -n "$LC_CTYPE" ] ; then
+ else
+   LCALL=$LANG
+ fi
+-case "$LCALL" in
+-  *UTF-8 | *UTF8 | *utf-8 | *utf8 ) ;;
+-  * ) echo "WARNING: locale/LC_ALL has no UTF-8 encoding but value '$LCALL'"
+-      echo "Since PAKCS might not work correctly with non-ASCII files,"
+-      echo "LC_ALL is set to 'C.UTF-8' in generated executables."
+-      echo "If this does not work, please set LC_ALL to another UTF-8 value."
+-      LCALL=C.UTF-8 ;;
+-esac
+ 
+ # Compute home of PAKCS installation:
+ PAKCSHOME=`(cd "\`dirname \"$0\"\`" > /dev/null ; pwd)`/..
+diff --git a/scripts/pakcs-makesavedstate.sh b/scripts/pakcs-makesavedstate.sh
+index f3e0d10..66d334f 100755
+--- a/scripts/pakcs-makesavedstate.sh
++++ b/scripts/pakcs-makesavedstate.sh
+@@ -119,11 +119,6 @@ fi
+ 
+ TMPFILE=TMPSAVEDSTATE$$
+ echo "#!/bin/sh" > $TMPFILE
+-# Set LC_ALL in saved states to the installation value of LC_ALL.
+-# When PAKCS is installed, LC_ALL should be UTF-8 encoding to ensure
+-# the correct reading of source programs with UTF-8 encoding.
+-echo "LC_ALL=$LCALL" >> $TMPFILE
+-echo "export LC_ALL" >> $TMPFILE
+ 
+ if [ -n "$SICSTUSBINDIR" ] ; then
+   # add SICSTUSBINDIR to path so that SICStus can find its binary:
