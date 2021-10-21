@@ -1,6 +1,6 @@
 pkgname=pakcs-sicstus
 pkgver=3.3.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Portland Aachen Kiel Curry System (using SICStus Prolog)"
 arch=("x86_64")
 license=("custom")
@@ -35,7 +35,7 @@ build() {
 
 package() {
   _srcroot="$srcdir/$_srcpath"
-  _distroot="$pkgdir/$_installpath}"
+  _distroot="$pkgdir/$_installpath"
 
   cd "$_srcroot"
 
