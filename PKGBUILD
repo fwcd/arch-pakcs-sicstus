@@ -1,6 +1,6 @@
 pkgname=pakcs-sicstus
 pkgver=3.3.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Portland Aachen Kiel Curry System (using SICStus Prolog)"
 arch=("x86_64")
 license=("custom")
@@ -26,7 +26,7 @@ prepare() {
 
 build() {
   cd "$srcdir/$_srcpath"
-  make SICSTUSPROLOG="$(readlink -f $(which sicstus))"
+  make SICSTUSPROLOG="$(readlink -f $(which sicstus))" \
        DISTPKGINSTALL=yes \
        CURRYLIBSDIR="$PWD/lib" \
        CURRYTOOLSDIR="$PWD/currytools" \
