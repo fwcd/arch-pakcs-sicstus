@@ -1,14 +1,14 @@
 pkgname=pakcs-sicstus
 pkgver=3.3.0
-pkgrel=3
+pkgrel=4
 pkgdesc="Portland Aachen Kiel Curry System (using SICStus Prolog)"
 arch=("x86_64")
 license=("custom")
 depends=("sicstus" "rlwrap" "sqlite")
 conflicts=("pakcs")
 makedepends=("stack")
-source=("https://www.informatik.uni-kiel.de/~pakcs/download/pakcs-$pkgver-src.tar.gz" "skip-lc-all.patch")
-sha1sums=("39ef38b074de2e21f06e7801f724efbca1bfbf55" "799603efc36da20c31c08d1624b25ab83a4185ae")
+source=("https://www.informatik.uni-kiel.de/~pakcs/download/pakcs-$pkgver-src.tar.gz")
+sha1sums=("39ef38b074de2e21f06e7801f724efbca1bfbf55")
 
 _srcpath="pakcs-$pkgver"
 _installpath="opt/$pkgname"
@@ -19,13 +19,15 @@ _installroot="/$_installpath"
 prepare() {
   # Patch out directory check
   sed -i "s|build: checkinstalldir|build:|g" "$srcdir/$_srcpath/Makefile"
-
-  # Patch out locale updates
-  patch -p1 -d "$srcdir/$_srcpath" -i "$srcdir/skip-lc-all.patch"
 }
 
 build() {
   cd "$srcdir/$_srcpath"
+
+  # Use custom locale since C.UTF-8 is not available on Arch
+  export LC_ALL=en_US.UTF-8
+
+  # Build PAKCS
   make SICSTUSPROLOG="$(readlink -f $(which sicstus))" \
        DISTPKGINSTALL=yes \
        CURRYLIBSDIR="$PWD/lib" \

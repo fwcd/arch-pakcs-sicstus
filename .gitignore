@@ -1,5 +1,6 @@
 *.tar.zst
 *.tar.gz
 *.backup
+.curry
 src/
 pkg/
