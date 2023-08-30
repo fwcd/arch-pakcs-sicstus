@@ -5,6 +5,7 @@ pkgdesc="Portland Aachen Kiel Curry System (using SICStus Prolog)"
 arch=("x86_64")
 license=("custom")
 depends=("sicstus" "rlwrap" "sqlite")
+provides=("pakcs")
 conflicts=("pakcs")
 makedepends=("stack")
 source=("https://www.informatik.uni-kiel.de/~pakcs/download/pakcs-$pkgver-src.tar.gz")
